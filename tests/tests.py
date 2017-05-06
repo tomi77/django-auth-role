@@ -1,3 +1,4 @@
+import django
 from django.contrib.auth.models import Permission
 from django.test.testcases import TestCase
 
@@ -15,12 +16,18 @@ class BackendTestCase(TestCase):
     fixtures = ['role']
 
     def test_1(self):
-        user = backend.authenticate(None, 'user1', 'test')
+        if django.VERSION[:2] < (1, 11):
+            user = backend.authenticate('user1', 'test')
+        else:
+            user = backend.authenticate(None, 'user1', 'test')
         permissions = backend.get_all_permissions(user)
         self.assertSetEqual(permissions, set())
 
     def test_2(self):
-        user = backend.authenticate(None, 'user2', 'test')
+        if django.VERSION[:2] < (1, 11):
+            user = backend.authenticate('user2', 'test')
+        else:
+            user = backend.authenticate(None, 'user2', 'test')
         permissions = backend.get_all_permissions(user)
         self.assertSetEqual(permissions, {
             'app.can_add_model1',
