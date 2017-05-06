@@ -2,6 +2,14 @@
 django-auth-role
 ================
 
+.. image:: https://codeclimate.com/github/tomi77/django-auth-role/badges/gpa.svg
+   :target: https://codeclimate.com/github/tomi77/django-auth-role
+   :alt: Code Climate
+.. image:: https://travis-ci.org/tomi77/django-auth-role.svg?branch=master
+   :target: https://travis-ci.org/tomi77/django-auth-role
+.. image:: https://coveralls.io/repos/github/tomi77/django-auth-role/badge.svg?branch=master
+   :target: https://coveralls.io/github/tomi77/django-auth-role?branch=master
+
 Add roles to django-auth
 
 Installation
