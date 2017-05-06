@@ -1,0 +1,97 @@
+- pk: 1
+  model: 'contenttypes.ContentType'
+  fields:
+    app_label: 'app'
+    model: 'model1'
+- pk: 2
+  model: 'contenttypes.ContentType'
+  fields:
+    app_label: 'app'
+    model: 'model2'
+
+- pk: 1
+  model: 'auth.Permission'
+  fields:
+    name: 'can add app.model1'
+    content_type: 1
+    codename: 'can_add_model1'
+- pk: 2
+  model: 'auth.Permission'
+  fields:
+    name: 'can update app.model1'
+    content_type: 1
+    codename: 'can_update_model1'
+- pk: 3
+  model: 'auth.Permission'
+  fields:
+    name: 'can delete app.model1'
+    content_type: 1
+    codename: 'can_delete_model1'
+- pk: 4
+  model: 'auth.Permission'
+  fields:
+    name: 'can add app.model2'
+    content_type: 2
+    codename: 'can_add_model2'
+- pk: 5
+  model: 'auth.Permission'
+  fields:
+    name: 'can update app.model2'
+    content_type: 2
+    codename: 'can_update_model2'
+- pk: 6
+  model: 'auth.Permission'
+  fields:
+    name: 'can delete app.model2'
+    content_type: 2
+    codename: 'can_delete_model2'
+
+- pk: 1
+  model: 'auth.Group'
+  fields:
+    name: 'all model1 permissions'
+    permissions: [1, 2, 3]
+- pk: 2
+  model: 'auth.Group'
+  fields:
+    name: 'all model2 permissions'
+    permissions: [4, 5, 6]
+
+- pk: 1
+  model: 'authrole.Role'
+  fields:
+    name: 'empty group'
+    groups: []
+- pk: 2
+  model: 'authrole.Role'
+  fields:
+    name: 'all groups'
+    groups: [1, 2]
+
+- pk: 1
+  model: 'auth.User'
+  fields:
+    username: 'user1'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
+- pk: 2
+  model: 'auth.User'
+  fields:
+    username: 'user2'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
+
+- pk: 1
+  model: 'tests.MyUser'
+  fields:
+    user: 1
+    role: 1
+- pk: 2
+  model: 'tests.MyUser'
+  fields:
+    user: 2
+    role: 2
