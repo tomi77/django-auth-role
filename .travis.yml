@@ -1,0 +1,38 @@
+language: python
+
+python:
+  - 2.7
+
+env:
+  - DJANGO=1.4.22
+  - DJANGO=1.5.12
+  - DJANGO=1.6.11
+  - DJANGO=1.7.11
+  - DJANGO=1.8.18
+  - DJANGO=1.9.13
+  - DJANGO=1.10.7
+  - DJANGO=1.11
+
+matrix:
+  include:
+    - python: 3.4
+      env: DJANGO=1.11
+    - python: 3.5
+      env: DJANGO=1.11
+    - python: 3.6
+      env: DJANGO=1.11
+
+install:
+  - pip install coveralls pyyaml south
+  - pip install -q Django==$DJANGO
+  - pip install --upgrade mock
+
+before_script:
+  - ./travis_syncdb.sh
+  - python manage.py migrate
+
+script:
+  - coverage run manage.py test tests
+
+after_success:
+  - coveralls
