@@ -8,7 +8,7 @@ class BaseAuthRoleBackend(ModelBackend):
     """
     Authenticates against authrole.models.Role.
     """
-    def fetch_permission(self, user_obj):
+    def fetch_role_permissions(self, user_obj):
         raise NotImplemented()
 
     def get_role_permissions(self, user_obj, obj=None):
@@ -22,7 +22,7 @@ class BaseAuthRoleBackend(ModelBackend):
             if user_obj.is_superuser:
                 perms = Permission.objects.all()
             else:
-                perms = self.fetch_permission(user_obj)
+                perms = self.fetch_role_permissions(user_obj)
             perms = perms.values_list('content_type__app_label', 'codename') \
                 .order_by()
             user_obj._role_perm_cache = set(['%s.%s' % (ct, name)
@@ -36,8 +36,3 @@ class BaseAuthRoleBackend(ModelBackend):
             .get_all_permissions(user_obj, obj)
         user_obj._perm_cache.update(self.get_role_permissions(user_obj))
         return user_obj._perm_cache
-
-
-class ElcarAuthRoleBackend(BaseAuthRoleBackend):
-    def fetch_permission(self, user_obj):
-        return Permission.objects.filter(group__roles__elcaruser__auth_user=user_obj)

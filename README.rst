@@ -56,7 +56,7 @@ Extend Your own authentication backend.
    from authrole.auth.backends import BaseAuthRoleBackend
 
    class MyBackend(BaseAuthRoleBackend):
-       def fetch_permission(self, user_obj):
+       def fetch_role_permissions(self, user_obj):
            return Permission.objects.filter(group__roles__myusers__user=user_obj)
 
 And add it to `AUTHENTICATION_BACKENDS`.
