@@ -9,7 +9,7 @@ class BaseAuthRoleBackend(ModelBackend):
     Authenticates against authrole.models.Role.
     """
     def fetch_role_permissions(self, user_obj):
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def get_role_permissions(self, user_obj, obj=None):
         """
