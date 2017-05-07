@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.backends import ModelBackend
-from django.contrib.auth.models import Permission
 
 
 class BaseAuthRoleBackend(ModelBackend):
@@ -16,14 +15,11 @@ class BaseAuthRoleBackend(ModelBackend):
         Returns a set of permission strings that this user has through his/her
         role.
         """
-        if user_obj.is_anonymous() or obj is not None:
+        if user_obj.is_superuser:
             return set()
         if not hasattr(user_obj, '_role_perm_cache'):
-            if user_obj.is_superuser:
-                perms = Permission.objects.all()
-            else:
-                perms = self.fetch_role_permissions(user_obj)
-            perms = perms.values_list('content_type__app_label', 'codename') \
+            perms = self.fetch_role_permissions(user_obj) \
+                .values_list('content_type__app_label', 'codename') \
                 .order_by()
             user_obj._role_perm_cache = set(['%s.%s' % (ct, name)
                                              for ct, name in perms])
