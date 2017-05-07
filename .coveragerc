@@ -3,7 +3,8 @@
 branch = True
 source = authrole
 omit =
-    authrolw/tests.py
+    authrole/migrations/*.py
+    authrole/south_migrations/*.py
 
 [report]
 # Regexes for lines to exclude from consideration
