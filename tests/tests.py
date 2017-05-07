@@ -15,19 +15,19 @@ class MyBackendTestCase(TestCase):
 
     backend = MyBackend()
 
-    def test_empty_role(self):
+    def authenticate(self, username, password):
         if django.VERSION[:2] < (1, 11):
-            user = self.backend.authenticate('user1', 'test')
+            return self.backend.authenticate(username, password)
         else:
-            user = self.backend.authenticate(None, 'user1', 'test')
+            return self.backend.authenticate(None, username, password)
+
+    def test_empty_role(self):
+        user = self.authenticate('user1', 'test')
         permissions = self.backend.get_all_permissions(user)
         self.assertSetEqual(permissions, set())
 
     def test_role(self):
-        if django.VERSION[:2] < (1, 11):
-            user = self.backend.authenticate('user2', 'test')
-        else:
-            user = self.backend.authenticate(None, 'user2', 'test')
+        user = self.authenticate('user2', 'test')
         permissions = self.backend.get_all_permissions(user)
         self.assertSetEqual(permissions, {
             'app.can_add_model1',
@@ -44,10 +44,7 @@ class MyBackendTestCase(TestCase):
         self.assertSetEqual(permissions, set())
 
     def test_superuser(self):
-        if django.VERSION[:2] < (1, 11):
-            user = self.backend.authenticate('user3', 'test')
-        else:
-            user = self.backend.authenticate(None, 'user3', 'test')
+        user = self.authenticate('user3', 'test')
         permissions = self.backend.get_all_permissions(user)
         all_permissions = Permission.objects.all().count()
         self.assertEqual(len(permissions), all_permissions)
