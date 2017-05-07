@@ -88,4 +88,7 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# PyCharm IDE
+.idea/
+
 test.sqlite
