@@ -65,7 +65,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'tests.myuser': {
+        'extend.myuser': {
             'Meta': {'object_name': 'MyUser'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'role': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'myusers'", 'to': "orm['authrole.Role']"}),

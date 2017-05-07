@@ -94,12 +94,12 @@
     is_staff: true
 
 - pk: 1
-  model: 'tests.MyUser'
+  model: 'extend.MyUser'
   fields:
     user: 1
     role: 1
 - pk: 2
-  model: 'tests.MyUser'
+  model: 'extend.MyUser'
   fields:
     user: 2
     role: 2
