@@ -38,9 +38,9 @@ Extend ``auth.User``.
 .. sourcecode:: python
 
    from django.db import models
+   from authrole.mixins import RoleMixin
 
-   class MyUser(models.Model):
-       role = models.ForeignKey('authrole.Role', related_name='myusers')
+   class MyUser(RoleMixin, models.Model):
        user = models.OneToOneField('auth.User', related_name='user')
 
 Create tables.
@@ -57,7 +57,7 @@ Extend Your own authentication backend.
 
    class MyBackend(BaseAuthRoleBackend):
        def fetch_role_permissions(self, user_obj):
-           return Permission.objects.filter(group__roles__myusers__user=user_obj)
+           return Permission.objects.filter(group__roles__users__user=user_obj)
 
 And add it to `AUTHENTICATION_BACKENDS`.
 

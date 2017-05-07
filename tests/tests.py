@@ -7,7 +7,7 @@ from authrole.auth.backends import BaseAuthRoleBackend
 
 class MyBackend(BaseAuthRoleBackend):
     def fetch_role_permissions(self, user_obj):
-        return Permission.objects.filter(group__roles__myusers__user=user_obj)
+        return Permission.objects.filter(group__roles__users__user=user_obj)
 
 
 class MyBackendTestCase(TestCase):

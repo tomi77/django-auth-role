@@ -1,6 +1,7 @@
 from django.db import models
 
+from authrole.mixins import RoleMixin
 
-class MyUser(models.Model):
-    role = models.ForeignKey('authrole.Role', related_name='myusers')
+
+class MyUser(RoleMixin, models.Model):
     user = models.OneToOneField('auth.User', related_name='user')
