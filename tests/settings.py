@@ -26,5 +26,7 @@ TEMPLATES = [
 
 MIDDLEWARE_CLASSES = []
 
+ROOT_URLCONF = 'tests.urls'
+
 if django.VERSION[:2] <= (1, 6):
     INSTALLED_APPS += ['south']
