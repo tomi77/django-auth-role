@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-auth-role\n"
 "Report-Msgid-Bugs-To: https://github.com/tomi77/django-auth-role/issues\n"
-"POT-Creation-Date: 2017-05-03 15:06+0200\n"
-"PO-Revision-Date: 2017-05-03 15:07+0200\n"
+"POT-Creation-Date: 2017-05-07 15:06+0200\n"
+"PO-Revision-Date: 2017-05-07 15:07+0200\n"
 "Last-Translator: Tomasz Jakub Rup <tomasz.rup@gmail.com>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: apps.py:7
+msgid "User Roles"
+msgstr "Role Użytkowników"
 
 #: models.py:11
 msgid "Role name"
