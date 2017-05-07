@@ -13,3 +13,6 @@ engines:
 ratings:
   paths:
   - "authrole/**.py"
+exclude_paths:
+- "authrole/migrations/*.py"
+- "authrole/south_migrations/*.py"
