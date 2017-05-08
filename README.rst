@@ -26,7 +26,8 @@ Installation
 Quick start
 ===========
 
-Add ``authrole`` to `INSTALLED_APPS` (``django.contrib.auth`` and ``django.contrib.contenttypes`` are also required) and ``AuthRoleBackend`` to `AUTHENTICATION_BACKENDS`.
+Add ``authrole`` to `INSTALLED_APPS` (``django.contrib.auth`` and ``django.contrib.contenttypes`` are also required)
+and ``AuthRoleBackend`` to `AUTHENTICATION_BACKENDS`.
 
 .. sourcecode:: python
 
@@ -86,4 +87,28 @@ If You need Your own authentication backend, simply extend ``BaseAuthRoleBackend
 
    class MyBackend(BaseAuthRoleBackend):
        def fetch_role_permissions(self, user_obj):
-           return Permission.objects.all()
+           if user_obj.username == 'admin':
+               return Permission.objects.all()
+           else:
+               return Permission.objects.none()
+
+Extend role
+-----------
+
+Add ``OneToOneField`` to Your model:
+
+.. sourcecode:: python
+
+   from django.db import models
+
+   class MyRole(models.Model):
+       role = models.OneToOneField('authrole.Role', null=False, blank=False, related_name='myrole')
+       extra_field = models.CharField(max_length=10)
+
+And use:
+
+.. sourcecode:: python
+
+   role = Role.objects.all()[0]
+
+   print(role.myrole.extra_field)
