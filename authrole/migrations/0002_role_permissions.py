@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0008_alter_user_username_max_length'),
+        ('auth', '__first__'),
         ('authrole', '0001_initial'),
     ]
 
