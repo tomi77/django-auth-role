@@ -12,6 +12,10 @@ django-auth-role
 
 Add roles to django-auth
 
+Role are set of group of permissions. It's fully customizable. Everything is in database.
+
+Admin application allow to manage of roles.
+
 Installation
 ============
 
@@ -65,3 +69,21 @@ Create tables.
 .. sourcecode:: sh
 
    ./manage.py migrate
+
+Advanced usage
+==============
+
+Own authentication backend
+--------------------------
+
+If You need Your own authentication backend, simply extend ``BaseAuthRoleBackend``.
+``fetch_role_permissions`` function must return a list of ``auth.Permission`` objects:
+
+.. sourcecode:: python
+
+   from authrole.auth.backends import BaseAuthRoleBackend
+   from django.contrib.auth.models import Permission
+
+   class MyBackend(BaseAuthRoleBackend):
+       def fetch_role_permissions(self, user_obj):
+           return Permission.objects.all()
