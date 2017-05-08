@@ -1,4 +1,4 @@
-## master
+## 0.2.0
 
 * Add `RoleMixin`
 * Add `ExtendedUserAuthRoleBackend`

@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-auth-role',
-    version='0.1.0',
+    version='0.2.0',
     author='Tomasz Jakub Rup',
     author_email='tomasz.rup@gmail.com',
     url='https://github.com/tomi77/django-auth-role',
