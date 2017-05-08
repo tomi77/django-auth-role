@@ -2,18 +2,13 @@ import django
 from django.contrib.auth.models import Permission, AnonymousUser
 from django.test.testcases import TestCase
 
-from authrole.auth.backends import BaseAuthRoleBackend
-
-
-class MyBackend(BaseAuthRoleBackend):
-    def fetch_role_permissions(self, user_obj):
-        return Permission.objects.filter(group__roles__users__user=user_obj)
+from authrole.auth.backends import AuthRoleBackend
 
 
 class MyBackendTestCase(TestCase):
     fixtures = ['role']
 
-    backend = MyBackend()
+    backend = AuthRoleBackend()
 
     def authenticate(self, username, password):
         if django.VERSION[:2] < (1, 11):

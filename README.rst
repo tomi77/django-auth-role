@@ -22,7 +22,7 @@ Installation
 Quick start
 ===========
 
-Add ``authrole`` to `INSTALLED_APPS`. ``django.contrib.auth`` and ``django.contrib.contenttypes`` are also required.
+Add ``authrole`` to `INSTALLED_APPS` (``django.contrib.auth`` and ``django.contrib.contenttypes`` are also required) and ``AuthRoleBackend`` to `AUTHENTICATION_BACKENDS`.
 
 .. sourcecode:: python
 
@@ -33,36 +33,35 @@ Add ``authrole`` to `INSTALLED_APPS`. ``django.contrib.auth`` and ``django.contr
        'authrole',
    ]
 
+   AUTHENTICATION_BACKENDS = (
+       'authrole.auth.backends.AuthRoleBackend',
+   )
+
 Extend ``auth.User``.
 
 .. sourcecode:: python
 
-   from django.db import models
    from authrole.mixins import RoleMixin
+   from django.db import models
 
    class MyUser(RoleMixin, models.Model):
        user = models.OneToOneField('auth.User', related_name='user')
+
+or create new auth user model:
+
+.. sourcecode:: python
+
+   from authrole.mixins import RoleMixin
+   from django.contrib.auth.models import AbstractUser
+   from django.db import models
+
+   class MyUser(RoleMixin, AbstractUser):
+       pass
+
+In this case remember to set ``AUTH_USER_MODEL`` to Your model.
 
 Create tables.
 
 .. sourcecode:: sh
 
    ./manage.py migrate
-
-Extend Your own authentication backend.
-
-.. sourcecode:: python
-
-   from authrole.auth.backends import BaseAuthRoleBackend
-
-   class MyBackend(BaseAuthRoleBackend):
-       def fetch_role_permissions(self, user_obj):
-           return Permission.objects.filter(group__roles__users__user=user_obj)
-
-And add it to `AUTHENTICATION_BACKENDS`.
-
-.. sourcecode:: python
-
-   AUTHENTICATION_BACKENDS = (
-       'app.MyBackend',
-   )
