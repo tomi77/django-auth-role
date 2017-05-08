@@ -1,3 +1,7 @@
+## master
+
+* Add `permissions` to `Role` model
+
 ## 0.2.0
 
 * Add `RoleMixin`

@@ -12,7 +12,7 @@ django-auth-role
 
 Add roles to django-auth
 
-Role are set of group of permissions. It's fully customizable. Everything is in database.
+Role are set of group of permissions and permissions. It's fully customizable. Everything is in database.
 
 Admin application allow to manage of roles.
 

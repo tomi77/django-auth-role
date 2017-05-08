@@ -9,6 +9,6 @@ class RoleAdmin(admin.ModelAdmin):
     list_display = ('name',)
     list_display_links = ('name',)
     list_filter = ('name',)
-    filter_horizontal = ('groups',)
+    filter_horizontal = ('groups', 'permissions')
 
 admin.site.register(Role, RoleAdmin)

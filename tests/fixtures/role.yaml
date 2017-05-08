@@ -45,6 +45,12 @@
     name: 'can delete app.model2'
     content_type: 2
     codename: 'can_delete_model2'
+- pk: 7
+  model: 'auth.Permission'
+  fields:
+    name: 'some operation on app.model2'
+    content_type: 2
+    codename: 'some_operation_model2'
 
 - pk: 1
   model: 'auth.Group'
@@ -61,12 +67,22 @@
   model: 'authrole.Role'
   fields:
     name: 'empty group'
-    groups: []
 - pk: 2
   model: 'authrole.Role'
   fields:
     name: 'all groups'
     groups: [1, 2]
+- pk: 3
+  model: 'authrole.Role'
+  fields:
+    name: 'all groups + permission'
+    groups: [1, 2]
+    permissions: [7]
+- pk: 4
+  model: 'authrole.Role'
+  fields:
+    name: 'only permission'
+    permissions: [7]
 
 - pk: 1
   model: 'auth.User'
@@ -92,6 +108,22 @@
     is_active: true
     is_superuser: true
     is_staff: true
+- pk: 4
+  model: 'auth.User'
+  fields:
+    username: 'user4'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
+- pk: 5
+  model: 'auth.User'
+  fields:
+    username: 'user5'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
 
 - pk: 1
   model: 'tests.MyUser'
@@ -103,3 +135,13 @@
   fields:
     user: 2
     role: 2
+- pk: 3
+  model: 'tests.MyUser'
+  fields:
+    user: 4
+    role: 3
+- pk: 4
+  model: 'tests.MyUser'
+  fields:
+    user: 5
+    role: 4

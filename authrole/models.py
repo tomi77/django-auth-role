@@ -11,6 +11,9 @@ class Role(models.Model):
                             verbose_name=_('Role name'))
     groups = models.ManyToManyField('auth.Group', related_name='roles',
                                     verbose_name=_('Groups of permissions'))
+    permissions = models.ManyToManyField('auth.Permission',
+                                         related_name='roles',
+                                         verbose_name=_('Permissions'))
 
     class Meta(object):
         verbose_name = _('Role')

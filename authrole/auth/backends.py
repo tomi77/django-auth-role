@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import Permission
 from django.conf import settings
+from django.db.models import Q
 
 
 class BaseAuthRoleBackend(ModelBackend):
@@ -42,7 +43,10 @@ class ExtendedUserAuthRoleBackend(BaseAuthRoleBackend):
     Authenticates against 'auth.User' model extended by authrole.Role.
     """
     def fetch_role_permissions(self, user_obj):
-        return Permission.objects.filter(group__roles__users__user=user_obj)
+        return Permission.objects.filter(
+            Q(group__roles__users__user=user_obj) |
+            Q(roles__users__user=user_obj)
+        )
 
 
 class OverriddenUserAuthRoleBackend(BaseAuthRoleBackend):
@@ -51,7 +55,9 @@ class OverriddenUserAuthRoleBackend(BaseAuthRoleBackend):
     with authrole.Role field.
     """
     def fetch_role_permissions(self, user_obj):
-        return Permission.objects.filter(group__roles__users=user_obj)
+        return Permission.objects.filter(
+            Q(group__roles__users=user_obj) | Q(roles__users=user_obj)
+        )
 
 
 if getattr(settings, 'AUTH_USER_MODEL', 'auth.User') == 'auth.User':
