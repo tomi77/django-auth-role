@@ -109,6 +109,33 @@ And use:
 
 .. sourcecode:: python
 
+   from authrole.models import Role
+
    role = Role.objects.all()[0]
 
    print(role.myrole.extra_field)
+
+Or write Your own role class based on ``AbstractRole`` (Django >= 1.5):
+
+.. sourcecode:: python
+
+   from authrole.model import AbstractRole
+
+   class MyRole(AbstractRole):
+       extra_field = models.CharField(max_length=10)
+
+Point `AUTHROLE_ROLE_MODEL` to Your new model:
+
+.. sourcecode:: python
+
+   AUTHROLE_ROLE_MODEL = 'app.MyRole'
+
+And use:
+
+.. sourcecode:: python
+
+   from app.models import MyRole
+
+   role = MyRole.objects.all()[0]
+
+   print(role.extra_field)

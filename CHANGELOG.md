@@ -1,3 +1,7 @@
+## master
+
+* Make `Role` swappable
+
 ## 0.3.0
 
 * Add `permissions` to `Role` model
