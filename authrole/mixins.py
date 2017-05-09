@@ -6,6 +6,9 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class RoleMixin(models.Model):
+    """
+    Mixin class to extend model with a role.
+    """
     role = models.ForeignKey(
         getattr(settings, 'AUTHROLE_ROLE_MODEL', 'authrole.Role'),
         related_name='users', null=True, blank=True,

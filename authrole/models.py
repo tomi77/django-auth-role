@@ -8,6 +8,9 @@ from django.utils.translation import ugettext_lazy as _
 
 @python_2_unicode_compatible
 class AbstractRole(models.Model):
+    """
+    Base class for a role model.
+    """
     name = models.CharField(max_length=128, unique=True,
                             verbose_name=_('Role name'))
     groups = models.ManyToManyField('auth.Group', related_name='roles',
