@@ -4,11 +4,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-auth-role',
-    version='0.3.0',
+    version='0.4.0',
     author='Tomasz Jakub Rup',
     author_email='tomasz.rup@gmail.com',
     url='https://github.com/tomi77/django-auth-role',
-    description='Add roles to django-auth',
+    description='Add user roles to django-auth',
     long_description=open('README.rst').read(),
     classifiers=[
         'Development Status :: 4 - Beta',
