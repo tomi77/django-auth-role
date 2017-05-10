@@ -83,6 +83,11 @@
   fields:
     name: 'only permission'
     permissions: [7]
+- pk: 5
+  model: 'authrole.Role'
+  fields:
+    name: 'model2 permissions'
+    groups: [2]
 
 - pk: 1
   model: 'auth.User'
@@ -124,6 +129,50 @@
     is_active: true
     is_superuser: false
     is_staff: false
+- pk: 6
+  model: 'auth.User'
+  fields:
+    username: 'user6'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
+- pk: 7
+  model: 'auth.User'
+  fields:
+    username: 'user7'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
+    user_permissions: [1, 4]
+- pk: 8
+  model: 'auth.User'
+  fields:
+    username: 'user8'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
+    groups: [1]
+- pk: 9
+  model: 'auth.User'
+  fields:
+    username: 'user9'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
+    user_permissions: [7]
+- pk: 10
+  model: 'auth.User'
+  fields:
+    username: 'user10'
+    password: 'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
+    is_active: true
+    is_superuser: false
+    is_staff: false
+    groups: [1]
 
 - pk: 1
   model: 'tests.MyUser'
@@ -145,3 +194,13 @@
   fields:
     user: 5
     role: 4
+- pk: 5
+  model: 'tests.MyUser'
+  fields:
+    user: 9
+    role: 5
+- pk: 6
+  model: 'tests.MyUser'
+  fields:
+    user: 10
+    role: 5
